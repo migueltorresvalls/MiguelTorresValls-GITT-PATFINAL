@@ -14,12 +14,14 @@ async function getData(){
             let id = pelicula.id;
             let nombre = pelicula.nombre; 
             let year_p = pelicula.year_p;
+            let categoria = pelicula.categoria; 
             let url = pelicula.url; 
 
             let obj = {
                 id : id,
                 nombre : nombre, 
                 year_p : year_p,
+                categoria : categoria,
                 url : url
             };
             
@@ -40,7 +42,7 @@ async function showData(){
         var html = ``;
         while (index < max){
             if (peliculas.length > index){
-                html += `<div class=search-result><div class="left-content"><img src="${peliculas[index].url}"></div><div class="right-content"><p id="full-name">${peliculas[index].year_p}</p><a href="${peliculas[index].url}" id="name">${peliculas[index].nombre}</a></div></div>`;
+                html += `<div class=search-result><div class="left-content"><img src="${peliculas[index].url}"></div><div class="right-content"><p id="full-name">${peliculas[index].categoria} - ${peliculas[index].year_p}</p><a href="${peliculas[index].url}" id="name">${peliculas[index].nombre}</a></div></div>`;
 
             }
             index ++;

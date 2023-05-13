@@ -1,28 +1,30 @@
 package com.mtorresvalls.practica3pat.service;
 
 public class Pelicula {
-    private int id;
+    private int id_p;
     private String nombre; 
     private int year_p; 
+    private String categoria; 
     private String url_p; 
 
-    public Pelicula(int id, String nombre, int year_p, String url_p){
-        this.id = id; 
+    public Pelicula(int id_p, String nombre, int year_p, String categoria, String url_p){
+        this.id_p = id_p; 
         this.nombre = nombre; 
         this.year_p = year_p; 
         this.url_p = url_p; 
+        this.categoria = categoria;
     }
 
     public Pelicula(){
-        this(0, null, 0, null);
+        this(0, null, 0, null, null);
     }
 
     public int getId() {
-        return id;
+        return id_p;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(int id_p) {
+        this.id_p = id_p;
     }
 
     public String getNombre() {
@@ -41,6 +43,14 @@ public class Pelicula {
         this.year_p = year_p;
     }
 
+    public String getCategoria(){
+        return categoria;
+    }
+
+    public void setCategoria(String categoria){
+        this.categoria = categoria; 
+    }
+
     public String getUrl() {
         return url_p;
     }
@@ -51,9 +61,10 @@ public class Pelicula {
     
     @Override
     public String toString(){
-        return "id: " + id +
+        return "id_p: " + id_p +
         ", nombre: " + nombre + 
         ", year_p: " + year_p + 
+        ", categoria: " + categoria + 
         ", url_p: " + url_p;
     }
 }

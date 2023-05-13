@@ -20,6 +20,7 @@ CREATE TABLE formularios (
     PRIMARY KEY (ID)
 );
 
+/*
 -- Crear table peliculas
 DROP TABLE IF EXISTS peliculas;
 CREATE TABLE peliculas (
@@ -29,3 +30,16 @@ CREATE TABLE peliculas (
     URL_P VARCHAR(255) NOT NULL, 
     PRIMARY KEY (ID)
 );
+*/
+
+
+DROP TABLE IF EXISTS peliculas;
+CREATE TABLE peliculas (
+    id_p integer NOT NULL,
+    nombre character varying NOT NULL,
+    year_p integer NOT NULL,
+    categoria character varying,
+    url_p character varying,
+    PRIMARY KEY (id_p)
+);
+

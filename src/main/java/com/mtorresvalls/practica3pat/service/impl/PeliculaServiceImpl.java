@@ -26,11 +26,12 @@ public class PeliculaServiceImpl {
         
         RowMapper<Pelicula> rowMapper = new RowMapper<Pelicula>() {
             public Pelicula mapRow(ResultSet rs, int rowNum) throws SQLException{
-                int id = rs.getInt("id");
+                int id = rs.getInt("id_p");
                 String nombre = rs.getString("nombre");
                 int year = rs.getInt("year_p");
+                String categoria = rs.getString("categoria");
                 String url = rs.getString("url_p");
-                return new Pelicula(id, nombre, year, url);
+                return new Pelicula(id, nombre, year, categoria, url);
             }
         };
 
