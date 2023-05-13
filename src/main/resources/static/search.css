@@ -7,7 +7,7 @@ body {
     background: rgb(102, 85, 143);
 }
 .home {
-    height: 50em;
+    height: 55em;
 }
 
 .home h1{
@@ -33,7 +33,6 @@ body {
     transition: all .2s linear;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
-
 
 .search-bar {
     height: 7em;
@@ -73,7 +72,7 @@ body {
 }
 
 .search-result-container {
-    height: 80%;
+    height: 35em;
     overflow: auto;
     position: relative;
     display: flex;
@@ -133,16 +132,37 @@ body {
     color: rgb(143, 136, 136);
 }
 
-.right-content a{
+.right-content ul {
+    font-family: 'Georgia';
+    transform: translate(-50%, -50%);
+    position: relative; 
+    top: 50%; 
+    left: 50%;
+    list-style: none; 
+}
+
+.right-content ul li i{
+    font-size: 1.5em;
+    color:rgb(143, 136, 136);
+}
+
+.right-content ul li i:hover{
+    cursor: pointer; 
+    color:rgb(97,68,164);
+}
+
+#name{
     font-size: 1em; 
-    font-family: 'Helvetica';
+    font-family: 'Georgia';
+    font-style: normal;
     position: relative;
     top: 15%;
     text-decoration: none;
     color: rgb(43, 40, 40);
 }
 
-.right-content a:hover{
+#name:hover{
+    cursor: pointer; 
     text-decoration: underline;
 }
 
