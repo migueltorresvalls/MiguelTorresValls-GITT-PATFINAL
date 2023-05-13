@@ -44,8 +44,20 @@ async function showData(){
             }
             index ++;
         }
-        document.getElementById("search-result-container").innerHTML = html;
+        let height = 40;
+        if ((15+(repos.length/2)*7) < 40){
+            height = 15+(repos.length/2)*7;
+        }
+
+        //let rect = document.getElementById("title").getBoundingClientRect();
+        //window.scrollTo(rect.top, rect.top);
+        
+        document.getElementById("search-bar-container").style.height = `${height}em`;
+        setTimeout(function(){document.getElementById("search-result-container").innerHTML = html;},100);
+        //document.getElementById("search-result-container").innerHTML = html;
     }catch (error){
+        document.getElementById("search-bar-container").style.height = "7em";
+        document.getElementById("search-result-container").innerHTML = "";
         alert(error);
     }
 }

@@ -15,11 +15,6 @@ body {
     color: rgb(225, 208, 208);
 }
 
-.left-arrow, 
-.right-arrow {
-    height: 80%;
-}
-
 .left-arrow:hover{
     background: palevioletred;
 }
