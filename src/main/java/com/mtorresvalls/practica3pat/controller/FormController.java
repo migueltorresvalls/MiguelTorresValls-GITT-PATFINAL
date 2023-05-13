@@ -22,8 +22,9 @@ public class FormController {
     private ArrayList<Form> forms = new ArrayList<>(); 
     
     @GetMapping("/getForms")
-    public ResponseEntity<ArrayList<Form>> getForm(){        
-        return new ResponseEntity<>(formServiceImpl.getForms(), HttpStatus.OK);
+    public ResponseEntity<ArrayList<Form>> getForm(){     
+        forms = formServiceImpl.getForms();   
+        return new ResponseEntity<>(forms, HttpStatus.OK);
     }
 
     @GetMapping("/addNewForm/nombre={nombre}/email={email}/mensaje={mensaje}")

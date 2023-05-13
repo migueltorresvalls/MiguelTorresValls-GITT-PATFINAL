@@ -9,8 +9,13 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class DataSourceConfiguration {
 
+    private DataSource dataSource = null; 
+
     @Bean
     public DataSource getDataSource(){
-        return DataSourceBuilder.create().driverClassName("org.h2.Driver").url("jdbc:h2:mem:testdb").username("miguel").password("Miguel").build();
+        if (dataSource == null){
+            dataSource = DataSourceBuilder.create().driverClassName("org.h2.Driver").url("jdbc:h2:mem:testdb").username("miguel").password("Miguel").build();
+        } 
+        return dataSource;
     }
 }

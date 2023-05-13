@@ -19,3 +19,13 @@ CREATE TABLE formularios (
     MENSAJE VARCHAR(255) NOT NULL, 
     PRIMARY KEY (ID)
 );
+
+-- Crear table peliculas
+DROP TABLE IF EXISTS peliculas;
+CREATE TABLE peliculas (
+    ID INT NOT NULL, 
+    NOMBRE VARCHAR(255) NOT NULL, 
+    YEAR_P INT NOT NULL, 
+    URL_P VARCHAR(255) NOT NULL, 
+    PRIMARY KEY (ID)
+);
