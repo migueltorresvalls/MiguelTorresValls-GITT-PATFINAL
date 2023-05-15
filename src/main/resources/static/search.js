@@ -1,10 +1,10 @@
 var peliculas = []
 
-async function getData(){
+async function fetchMovies(){
     peliculas = [];
     const busqueda = document.getElementById("search-bar").value;
     //const url = `https://api.github.com/users/${busqueda}/peliculas`;
-    const url = `http://localhost:8888/api/getPeliculas/busqueda=${busqueda}`;
+    const url = `http://localhost:9000/api/v1/peliculas`;
 
     const response = await fetch(url);
 
@@ -34,9 +34,9 @@ async function getData(){
     }
 }
 
-async function showData(){
+async function showMovies(){
     try {
-        await getData();
+        await fetchMovies();
 
         let max = 20;
         let index = 0;
@@ -59,9 +59,13 @@ async function showData(){
         if ((15+(peliculas.length/2)*7) < 45){
             height = 15+(peliculas.length/2)*7;
         }
+
+        let height_container = height-7;
         
         document.getElementById("search-bar-container").style.height = `${height}em`;
-        setTimeout(function(){document.getElementById("search-result-container").innerHTML = html;},100);
+        document.getElementById("search-result-container").style.height = `${height_container}em`;
+
+        setTimeout(function(){document.getElementById("search-result-container").innerHTML = html;},300);
     }catch (error){
         document.getElementById("search-bar-container").style.height = "7em";
         document.getElementById("search-result-container").innerHTML = "";

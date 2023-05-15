@@ -1,10 +1,10 @@
-package edu.comillas.icai.pat.ejemplopat;
+package com.spring.spring;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class EjemplopatApplicationTests {
+class ApplicationTests {
 
 	@Test
 	void contextLoads() {

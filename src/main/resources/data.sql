@@ -1,16 +1,4 @@
-/*
-INSERT INTO DEMO (KEY_NAME,FIRST_NAME,LAST_NAME,EMAIL) VALUES
-('OSCAR', 'OSCAR','SANZ','demoicai@comillas.edu'),
-('JOHN', 'JOHN','DOE','johndoe@comillas.edu');
-*/
-
-INSERT INTO formularios (ID, NOMBRE, EMAIL, MENSAJE) VALUES
-(0, 'Miguel Torres', 'mtorresvalls@gmail.com', 'Esto es un mensaje de prueba para mi nueva base de datos');
-
-
--- A partir de fichero generado con python
-
-INSERT INTO peliculas (id_p, nombre, year_p, categoria, url_p) VALUES 
+INSERT INTO PELICULAS VALUES
 (0, 'The Wire (TV Series) (2002)   ', 2002, 'programa', 'https://pics.filmaffinity.com/the_wire-680717276-mtiny.jpg'),
 (1, 'City of God  (2002)   ', 2002, 'pelicula', 'https://pics.filmaffinity.com/cidade_de_deus-954148413-mtiny.jpg'),
 (2, 'The Pianist  (2002)   ', 2002, 'pelicula', 'https://pics.filmaffinity.com/the_pianist_le_pianiste-978132965-mtiny.jpg'),
@@ -612,3 +600,5 @@ INSERT INTO peliculas (id_p, nombre, year_p, categoria, url_p) VALUES
 (598, 'The Summit of the Gods  (2021)   ', 2021, 'pelicula', 'https://pics.filmaffinity.com/le_sommet_des_dieux-229611884-mtiny.jpg'),
 (599, 'Dune  (2021)   ', 2021, 'pelicula', 'https://pics.filmaffinity.com/dune-209834814-mtiny.jpg');
 
+INSERT INTO FORMULARIOS VALUES
+(0, 'Miguel', 'mtorresvalls1@gmail.com', 'Mensaje de prueba');

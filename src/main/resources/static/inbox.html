@@ -36,16 +36,16 @@
                 </div>
 
                 <!--<form action="addNewForm" method="POST"> -->
-                <form id="registration-form" method="GET">
+                <form id="registration-form">
                     <div class="form-info">
                         <i class="fa-brands fa-twitter"></i>
                         <i class="fa-brands fa-linkedin-in"></i>
                         <i class="fa-regular fa-envelope"></i>
                     </div>
-                    <input type="text" id="text" name="nombre" placeholder="John Doe" autocomplete="off">
-                    <input type="text" id="email" name="email" placeholder="john@email.com" autocomplete="off">
-                    <textarea id="message" name="mensaje" placeholder="Text goes here"></textarea>
-                    <input type="submit" id="submit" name="submit" value="Submit" onclick="addNewForm()">
+                    <input type="text" id="nombre" name="nombre" placeholder="John Doe" autocomplete="off">
+                    <input type="text" id="correo" name="correo" placeholder="john@email.com" autocomplete="off">
+                    <textarea id="mensaje" name="mensaje" placeholder="Text goes here"></textarea>
+                    <input type="submit" id="submit" name="submit" value="Submit" onclick="addForm()">
                     <p>Thank you for getting in touch with me. 
                     <b>I will answer as soon as possible.</b></p>
                 </form>
@@ -56,27 +56,44 @@
         <footer>
             <p>Created by: Miguel Torres @ 14/02/2023</p>
         </footer>
-
         <script>
-            async function addNewForm(){
-                let nombre = document.getElementById("text").value; 
-                let email = document.getElementById("email").value; 
-                let mensaje = document.getElementById("message").value;
-                
-                const url = `http://localhost:8888/api/addNewForm/nombre=${nombre}/email=${email}/mensaje=${mensaje}`;
+            function addForm(){
+                let nombre = document.getElementById("nombre").value; 
+                let correo = document.getElementById("correo").value; 
+                let mensaje = document.getElementById("mensaje").value; 
+                let formulario = {
+                    id: 0, 
+                    nombre: nombre, 
+                    correo: correo, 
+                    mensaje: mensaje 
+                };
 
-                const response = await fetch(url);
+                console.log(JSON.stringify(formulario));
 
-                if (response.ok){
-                    alert("¡Formulario añadido correctamente!");
-                } else {
-                    alert("Error al añadir un nuevo formulario");
-                }
+                fetch('http://localhost:9000/api/v1/formularios',
+                {
+                    method:'POST',
+                    body: JSON.stringify(formulario),
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                    }
+                })
+                // Promesa response
+                .then(res => {
+                    if (res.ok){
+                        alert('Formulario añadido correctamente ' + nombre);
+                    }else{
+                        throw res;
+                    }
+                })
+                // Promesa body
+                .then(r => {
 
-                document.getElementById("text").value = ""
-                document.getElementById("email").value = "";
-                document.getElementById("message").value = "";
+                })
+                // Errores
+                .catch(e => console.log(e))
             }
-          </script>
+        </script>
     </body>
 </html>
