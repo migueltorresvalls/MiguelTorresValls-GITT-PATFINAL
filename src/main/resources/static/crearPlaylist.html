@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="gallery.css">
+        <link rel="stylesheet" href="spoti.css">
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/22ef74e242.js" crossorigin="anonymous"></script>
+        <title>Miguel Torres</title>
+    </head>
+    <body>
+        <main>
+            <div class="nav-menu">
+                <ul>
+                    <a id="home" href="index.html"><li><i class="fa-solid fa-bars"></i></li></a>
+                    <a id="inbox" href="inbox.html"><li><i class="fa-solid fa-inbox"></i></i></li></a>
+                    <a id="portfolio" href=""><li><i class="fa-solid fa-user"></i></li></a>
+                    <a id="grid" href="search.html"><li><i class="fa-solid fa-book"></i></i></li></a>
+                    <a id="profile" href="perfil.html"><li><i class="fa-solid fa-hashtag"></i></i></li></a>
+                </ul>
+            </div>
+
+            <div class="home">
+                <h1>Create your movieList</h1>
+
+            
+
+                <!--<form action="addNewForm" method="POST"> -->
+                <form id="registration-form" >
+        
+                    
+                    <input type="text" id="text" name="nombreList" placeholder="Nombre movieList" autocomplete="off">
+                    <input type="text" id="movieId" name="movieId" placeholder="Id movieList" autocomplete="off">
+                    
+                    <input type="submit" id="submit" name="Crear" value="Crear" onclick="nuevaList()">
+                    
+                    
+                </form>
+                
+            </div>
+            <div class="sidebar">
+                <div class="left-arrow">
+                    <a href="gallery.html"><i class="fa-solid fa-angle-left"></i></a>
+                </div>
+                      
+                <div class="logo">
+                  <a href="#">
+                    <img src="MovieGramLogo-modified (2).png" alt="Logo" />
+                  </a>
+                </div>
+            
+          
+                <div class="navigation">
+                  <ul>
+                    <li>
+                      <a href="#">
+                        <span class="fa fa-home"></span>
+                        <span>Home</span>
+                      </a>
+                    </li>
+          
+                    <li>
+                      <a href="#">
+                        <span class="fa fa-search"></span>
+                        <span>Search</span>
+                      </a>
+                    </li>
+          
+                    <li>
+                      <a href="#">
+                        <span class="fa fas fa-book"></span>
+                        <span>Your Library</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+          
+                <div class="navigation">
+                  <ul>
+                    <li>
+                      <a href="#">
+                        <span class="fa fas fa-plus-square"></span>
+                        <span onclick>Create Playlist</span>
+                      </a>
+                    </li>
+          
+    
+                  </ul>
+                </div>
+          
+                <div class="policies">
+                  <ul>
+                    <li>
+                      <a href="#">Cookies</a>
+                    </li>
+                    <li>
+                      <a href="#">Privacy</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+        </main>
+
+        <footer>
+            <p>MovieGram @ 14/02/2023</p>
+        </footer>
+     
+        
+    </body>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const username1 = urlParams.get('username');
+      
+        async function nuevaList() {
+          
+          const username = username1;
+          const movieList = document.getElementById("text").value;
+          const movieListId = document.getElementById("movieId").value;
+      
+          console.log(username);
+      
+          const data = {
+            movieList: movieList,
+            username: username,
+            movieListId: movieListId
+          };
+          console.log(data);
+      
+          const url = `http://localhost:8888/api/v1/user/playlist`;
+          var postOptions = {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+          };
+      
+        
+            const response = await fetch(url, postOptions);
+      
+            if (response.ok) {
+              alert("¡Lista de películas creada!");
+              console.log(response);
+            } else {
+              alert("Error al crear la lista de películas");
+              
+            }
+          } 
+        
+      </script>
+
+</html>

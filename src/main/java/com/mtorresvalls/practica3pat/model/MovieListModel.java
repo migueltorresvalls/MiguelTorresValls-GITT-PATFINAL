@@ -8,14 +8,14 @@ import org.springframework.data.relational.core.mapping.Table;
 public class MovieListModel {
 
     @Id
+    @Column("MOVIELIST_ID")
+    private String movieListId;
+
+    @Column("USERNAME")
+    private String username;
+
     @Column("MOVIELISTNAME")
     private String movieList;
-
-    @Column("USER_ID")
-    private Long userId;
-
-    @Column("MOVIELIST_ID")
-    private Long movieListId;
 
     public MovieListModel() {
     }
@@ -28,20 +28,12 @@ public class MovieListModel {
         this.movieList = movieList;
     }
 
-    public Long getUserId() {
-        return userId;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    public Long getMovieListId() {
-        return movieListId;
-    }
-
-    public void setMovieListId(Long movieListId) {
-        this.movieListId = movieListId;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     @Override
@@ -49,7 +41,7 @@ public class MovieListModel {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((movieList == null) ? 0 : movieList.hashCode());
-        result = prime * result + ((userId == null) ? 0 : userId.hashCode());
+        result = prime * result + ((username == null) ? 0 : username.hashCode());
         result = prime * result + ((movieListId == null) ? 0 : movieListId.hashCode());
         return result;
     }
@@ -68,10 +60,10 @@ public class MovieListModel {
                 return false;
         } else if (!movieList.equals(other.movieList))
             return false;
-        if (userId == null) {
-            if (other.userId != null)
+        if (username == null) {
+            if (other.username != null)
                 return false;
-        } else if (!userId.equals(other.userId))
+        } else if (!username.equals(other.username))
             return false;
         if (movieListId == null) {
             if (other.movieListId != null)
@@ -79,6 +71,14 @@ public class MovieListModel {
         } else if (!movieListId.equals(other.movieListId))
             return false;
         return true;
+    }
+
+    public String getMovieListId() {
+        return movieListId;
+    }
+
+    public void setMovieListId(String movieListId) {
+        this.movieListId = movieListId;
     }
 
 }

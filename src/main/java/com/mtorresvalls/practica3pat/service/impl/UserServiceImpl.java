@@ -1,5 +1,7 @@
 package com.mtorresvalls.practica3pat.service.impl;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -33,14 +35,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserModel getUsuarios(String username) {
-        UserModel response = null;
+    public Optional<UserModel> getUsuarios(String username) {
+        Optional<UserModel> response = null;
         if (repository.existsById(username)) {
+            response = repository.findById(username);
+            /*
             Iterable<UserModel> usuarios = repository.getUsuarios(username);
             for (UserModel u : usuarios) {
                 response = u;
             }
             return response;
+             */
         }
         return response;
 
@@ -53,8 +58,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int createMovieList(MovieListModel movielist) {
-        return jdbcTemplate.update("INSERT INTO MOVIELISTS (MOVIELISTNAME,USER_ID,MOVIELIST_ID) VALUES(?,?,?)",
-                movielist.getMovieList(), movielist.getUserId(), movielist.getMovieListId());
+        return jdbcTemplate.update("INSERT INTO MOVIELISTS (MOVIELISTNAME,USERNAME,MOVIELIST_ID) VALUES(?,?,?)",
+                movielist.getMovieList(), movielist.getUsername(), movielist.getMovieListId());
     }
 
     /* */ @Override
@@ -70,7 +75,7 @@ public class UserServiceImpl implements UserService {
                 (data, rowNum) -> {
                     return new UserPlaylistDTO(
                             data.getString("MOVIELISTS.MOVIELISTNAME"),
-                            data.getLong("MOVIELISTS.MOVIELIST_ID"),
+                            data.getString("MOVIELISTS.MOVIELIST_ID"),
                             data.getString("USERS.USERNAME"));
 
                 });

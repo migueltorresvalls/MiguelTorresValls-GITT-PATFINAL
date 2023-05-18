@@ -68,7 +68,7 @@
                     <li>
                       <a href="#">
                         <span class="fa fas fa-plus-square"></span>
-                        <span>Create Playlist</span>
+                        <span onclick="crearPlaylist()">Create Playlist</span>
                       </a>
                     </li>
           
@@ -438,6 +438,14 @@
               
 
               document.getElementById("main-container").innerHTML = html; 
+            }
+
+            async function  crearPlaylist(){
+              console.log(username);
+             
+              window.location.href = 'crearPlaylist.html?username=' + encodeURIComponent(username);
+              //window.location.href = 'crearPlaylist.html'
+              
             }
 
         </script>

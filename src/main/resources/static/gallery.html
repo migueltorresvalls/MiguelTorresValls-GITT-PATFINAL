@@ -20,7 +20,8 @@
                     <a id="inbox" href="inbox.html"><li><i class="fa-solid fa-inbox"></i></i></li></a>
                     <a id="portfolio" href=""><li><i class="fa-solid fa-user"></i></li></a>
                     <a id="grid" href="search.html"><li><i class="fa-solid fa-book"></i></i></li></a>
-                    <a id="profile" href="perfil.html"><li><i class="fa-solid fa-hashtag"></i></i></li></a>
+                    <a id="profile" href=""><li><i class="fa-solid fa-hashtag"></i></i></li></a>
+                    <a id="movies" href="movies.html"><li><i class="fa-solid fa-video"></i></li></a>
                 </ul>
             </div>
 
@@ -56,34 +57,51 @@
         
     </body>
     <script>
+        var response = {};
+
+        async function fetchUser(){
+            const url = 'http://localhost:8888/api/v1/user/user1?actual=true';
+
+            await fetch(url, {
+                method: 'GET', 
+                headers: {
+                    'Content-Type': 'application/json', 
+                    'Accept': 'application/json',
+                }
+            })
+            // Respuesta header
+            .then(res => {
+                if (res.ok){
+                    return res.json(); 
+                } else {
+                    throw res; 
+                }
+            })
+            // Respuesta body
+            .then (r => {
+                response = r; 
+            })
+            .catch(e => console.log(e));
+        }
+
+
         async function login(){
-            
-            
             let nombre = document.getElementById("text").value; 
-            
             let password = document.getElementById("password").value;
 
-            const data={username:nombre,password:password};
+            await fetchUser();
             
-            const url = 'http://localhost:8888/api/v1/user/'+ nombre;
-
-            console.log(nombre);
-
-            var requestOptions={
-                method:'GET',
-            };
-    
-            const response= await fetch(url);
-
-            if (response.ok){
-                alert("¡Bienvenido!");
-                console.log(response.json());
-                //te redirige a otra pagina
-                window.location.href = 'perfil.html?username=' + encodeURIComponent(nombre);
-            } else {
-                alert("Error al añadir un nuevo formulario");
+            if (nombre == response["username"] && password == response["password"]){
+                const url = 'perfil.html?username=' + encodeURIComponent(nombre);
+                console.log('URL' + url);
+                document.getElementById("profile").href = url;
+                window.location.href = url;
+            }else {
+                alert("Error al iniciar sesion");
             }
         }
+
+
       </script>
 
 </html>

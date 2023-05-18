@@ -1,5 +1,7 @@
 package com.mtorresvalls.practica3pat.service;
 
+import java.util.Optional;
+
 import com.mtorresvalls.practica3pat.model.MovieListModel;
 import com.mtorresvalls.practica3pat.model.UserModel;
 import com.mtorresvalls.practica3pat.service.dto.UserPlaylistDTO;
@@ -9,7 +11,7 @@ public interface UserService {
 
     void createUser(UserModel usuario);
 
-    UserModel getUsuarios(String username);
+    Optional<UserModel> getUsuarios(String username);
 
     void loginUsuario(UserModel usuario);
 
