@@ -4,10 +4,20 @@ public class UserPlaylistDTO {
 
     private String movieList;
     private Long movieListId;
+    private String username; 
 
-    public UserPlaylistDTO(String movieList, Long movieListId) {
+    public UserPlaylistDTO(String movieList, Long movieListId, String username) {
         this.movieList = movieList;
         this.movieListId = movieListId;
+        this.username = username; 
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getMovieList() {

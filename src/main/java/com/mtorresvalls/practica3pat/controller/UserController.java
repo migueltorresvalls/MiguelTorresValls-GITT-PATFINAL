@@ -54,5 +54,4 @@ public class UserController {
     public ResponseEntity<Integer> createMovielist(@RequestBody MovieListModel movielist) {
         return ResponseEntity.ok().body(service.createMovieList(movielist));
     }
-
 }

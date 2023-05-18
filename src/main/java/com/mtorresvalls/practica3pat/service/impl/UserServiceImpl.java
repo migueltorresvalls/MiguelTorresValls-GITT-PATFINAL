@@ -60,7 +60,7 @@ public class UserServiceImpl implements UserService {
     /* */ @Override
     public Iterable<UserPlaylistDTO> getMovieLists(String username) {
         String query = """
-                SELECT MOVIELISTS.MOVIELISTNAME,MOVIELISTS.MOVIELIST_ID
+                SELECT MOVIELISTS.MOVIELISTNAME,MOVIELISTS.MOVIELIST_ID, USERS.USERNAME
                 FROM USERS
                 INNER JOIN MOVIELISTS ON USERS.USERNAME=MOVIELISTS.USERNAME
                 WHERE USERS.USERNAME=""" + "'" + username + "'";
@@ -70,7 +70,8 @@ public class UserServiceImpl implements UserService {
                 (data, rowNum) -> {
                     return new UserPlaylistDTO(
                             data.getString("MOVIELISTS.MOVIELISTNAME"),
-                            data.getLong("MOVIELISTS.MOVIELIST_ID"));
+                            data.getLong("MOVIELISTS.MOVIELIST_ID"),
+                            data.getString("USERS.USERNAME"));
 
                 });
 
