@@ -1,13 +1,13 @@
 body {
-    background: rgb(97,68,164);
-    background: linear-gradient(90deg, rgba(97,68,164,1) 0%, rgba(102,85,143,1) 100%, rgba(37,73,96,1) 100%);
+    background: rgb(66, 64, 65);
+    background: linear-gradient(90deg, rgb(66, 64, 65)0%, rgb(66, 64, 65) 100%, rgba(37,73,96,1) 100%);
 }
 
 #grid{
-    background: rgb(102, 85, 143);
+    background: rgb(6, 113, 102);
 }
 .home {
-    height: 55em;
+    height: 50em;
 }
 
 .home h1{
@@ -17,10 +17,37 @@ body {
 .home p{
     color: rgb(225, 208, 208);
 }
+.home img {
+    width: 10em; 
+    height: 10em; 
+    border-radius: 5em;
+    position: relative; 
+    top: 3%;
+    transform: translate(-50%, 0);
+    left: 50%;
+    border: 3px solid #1d1d27;
+    box-shadow: 12px 5px 15px -5px #333;
+}
+#description{
+    top: 5%;
+    color: rgb(220, 211, 211);
+    position: relative; 
+    margin: 0; 
+    transform: translate(-50%, 0);
+    max-width: 50em;
+    left: 50%;
+    width: 50%;
+    font-size: 1em;
+    padding: 2em;
+    font-style: normal;
+    line-height: 1.5em;
+    /*box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);*/
+}
 
 .left-arrow:hover {
-    background:rgba(102,85,143,1);
+    background:rgb(6, 113, 102);
 }
+
 
 .search-bar-container{
     background: #FFFFFF; 
@@ -33,6 +60,7 @@ body {
     transition: all .2s linear;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
+
 
 .search-bar {
     height: 7em;
@@ -72,7 +100,7 @@ body {
 }
 
 .search-result-container {
-    height: 35em;
+    height: 80%;
     overflow: auto;
     position: relative;
     display: flex;
@@ -132,40 +160,19 @@ body {
     color: rgb(143, 136, 136);
 }
 
-.right-content ul {
-    font-family: 'Georgia';
-    transform: translate(-50%, -50%);
-    position: relative; 
-    top: 50%; 
-    left: 50%;
-    list-style: none; 
-}
-
-.right-content ul li i{
-    font-size: 1.5em;
-    color:rgb(143, 136, 136);
-}
-
-.right-content ul li i:hover{
-    cursor: pointer; 
-    color:rgb(97,68,164);
-}
-
-#name{
+.right-content a{
     font-size: 1em; 
-    font-family: 'Georgia';
-    font-style: normal;
+    font-family: 'Helvetica';
     position: relative;
     top: 15%;
     text-decoration: none;
     color: rgb(43, 40, 40);
 }
 
-#name:hover{
-    cursor: pointer; 
+.right-content a:hover{
     text-decoration: underline;
 }
 
 footer {
-    background:rgb(83, 70, 113);
+    background:rgb(66, 64, 65);
 }

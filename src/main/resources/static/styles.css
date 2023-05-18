@@ -30,8 +30,8 @@ html {
   }
 
 body {
-    background: rgb(53, 108, 162);
-    background: linear-gradient(90deg, rgb(58, 96, 134) 0%, rgba(53,108,162,1) 100%, rgba(37,73,96,1) 100%);
+    background: rgb(56, 54, 55);
+    background: linear-gradient(90deg, rgb(56, 54, 55) 0%, rgb(56, 54, 55) 100%, rgba(37,73,96,1) 100%);
 
     margin: 0; 
     display: flex; 
@@ -46,6 +46,8 @@ body {
     height: 10em;
     /*height: 14%;*/
     top: 0;
+    
+    
 }
 
 .nav-menu ul{
@@ -85,19 +87,19 @@ body {
 }
 
 #home:hover{
-    background: rgb(53, 108, 162);
+    background: rgb(6, 113, 102);
 }
 
 #inbox:hover{
-    background: palevioletred;
+    background: rgb(6, 113, 102);
 }
 
 #portfolio:hover{
-    background: rgb(119, 160, 58);
+    background: rgb(6, 113, 102);
 }
 
 #grid:hover{
-    background: rgb(102, 85, 143);
+    background: rgb(6, 113, 102);
 }
 
 .nav-menu ul li i {

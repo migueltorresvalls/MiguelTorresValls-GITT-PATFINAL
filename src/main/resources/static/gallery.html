@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+
         <link rel="stylesheet" href="styles.css">
         <link rel="stylesheet" href="gallery.css">
 
@@ -8,7 +9,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css" rel="stylesheet">
-
         <script src="https://kit.fontawesome.com/22ef74e242.js" crossorigin="anonymous"></script>
         <title>Miguel Torres</title>
     </head>
@@ -17,75 +17,73 @@
             <div class="nav-menu">
                 <ul>
                     <a id="home" href="index.html"><li><i class="fa-solid fa-bars"></i></li></a>
-                    <a id="inbox" href="inbox.html"><li><i class="fa-solid fa-inbox"></i></li></a>
-                    <a id="portfolio" href=""><li><i class="fa-solid fa-photo-film"></i></li></a>
-                    <a id="grid" href="search.html"><li><i class="fa-solid fa-table-cells-large"></i></li></a>
+                    <a id="inbox" href="inbox.html"><li><i class="fa-solid fa-inbox"></i></i></li></a>
+                    <a id="portfolio" href=""><li><i class="fa-solid fa-user"></i></li></a>
+                    <a id="grid" href="search.html"><li><i class="fa-solid fa-book"></i></i></li></a>
+                    <a id="profile" href="perfil.html"><li><i class="fa-solid fa-hashtag"></i></i></li></a>
                 </ul>
             </div>
 
             <div class="home">
-                <h1>And here is my work</h1>
-                <p>Some of my most recent work</p>
+                <h1>Log in</h1>
+                <p>Welcome Back!</p>
 
                 <div class="left-arrow">
-                    <a href="inbox.html"><i class="fa-solid fa-angle-left"></i></a>
+                    <a href="index.html"><i class="fa-solid fa-angle-left"></i></a>
                 </div>
 
                 <div class="right-arrow">
                     <a href="search.html"><i class="fa-solid fa-angle-right"></i></a>
                 </div>
 
-                <div class="work">
-                    <table>
-                            <tr>
-                                <td>
-                                    <div class="experience">
-                                        <i class="fa-solid fa-circle-info"></i>
-                                        <p>Know more</p>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="experience">
-                                        <i class="fa-solid fa-circle-info"></i>
-                                        <p>Know more</p>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="experience">
-                                        <i class="fa-solid fa-circle-info"></i>
-                                        <p>Know more</p>
-                                    </div>
-                                </td>
-                            </tr>         
-                            <tr>
-                                <td>
-                                    <div class="experience">
-                                        <i class="fa-solid fa-circle-info"></i>
-                                        <p>Know more</p>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="experience">
-                                        <i class="fa-solid fa-circle-info"></i>
-                                        <p>Know more</p>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="experience">
-                                        <i class="fa-solid fa-circle-info"></i>
-                                        <p>Know more</p>
-                                    </div>
-                                </td>
-                            </tr>  
-                                    
-                    </table>
-                </div>
-
+                <!--<form action="addNewForm" method="POST"> -->
+                <form id="registration-form" >
+        
+                    
+                    <input type="text" id="text" name="nombre" placeholder="John Doe" autocomplete="off">
+                    <input type="text" id="password" name="password" placeholder="****" autocomplete="off">
+                    <input type="submit" id="submit" name="Log in" value="Log in" onclick="login()">
+                    
+                </form>
+                
             </div>
         </main>
 
         <footer>
-            <p>Created by: Miguel Torres @ 14/02/2023</p>
+            <p>MovieGram @ 14/02/2023</p>
         </footer>
+     
+        
     </body>
+    <script>
+        async function login(){
+            
+            
+            let nombre = document.getElementById("text").value; 
+            
+            let password = document.getElementById("password").value;
+
+            const data={username:nombre,password:password};
+            
+            const url = 'http://localhost:8888/api/v1/user/'+ nombre;
+
+            console.log(nombre);
+
+            var requestOptions={
+                method:'GET',
+            };
+    
+            const response= await fetch(url);
+
+            if (response.ok){
+                alert("¡Bienvenido!");
+                console.log(response.json());
+                //te redirige a otra pagina
+                window.location.href = 'perfil.html?username=' + encodeURIComponent(nombre);
+            } else {
+                alert("Error al añadir un nuevo formulario");
+            }
+        }
+      </script>
+
 </html>

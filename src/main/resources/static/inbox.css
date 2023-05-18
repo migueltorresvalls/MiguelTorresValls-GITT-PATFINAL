@@ -1,10 +1,10 @@
 body {
-    background: rgb(191,90,124);
-    background: linear-gradient(90deg, rgba(191,90,124,1) 0%, rgba(216,112,147,1) 100%, rgba(37,73,96,1) 100%);
+    background: rgb(66, 64, 65);
+    background: linear-gradient(90deg, rgb(66, 64, 65)0%, rgb(66, 64, 65) 100%, rgba(37,73,96,1) 100%);
 }
 
 #inbox{
-    background: palevioletred;
+    background: rgb(6, 113, 102);
 }
 
 .home h1{
@@ -16,11 +16,11 @@ body {
 }
 
 .left-arrow:hover{
-    background: palevioletred;
+    background:rgb(6, 113, 102);
 }
 
 .right-arrow:hover{
-    background: rgb(191,90,124);
+    background:rgb(6, 113, 102);
 }
 
 .home form {
@@ -93,5 +93,5 @@ body {
 }
 
 footer{
-    background: rgb(161, 84, 109);
+    background: rgb(66, 64, 65);
 }

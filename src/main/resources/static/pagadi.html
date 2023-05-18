@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>PLAYLISTS</h1>
+    <input type="text" id="nombre" name="nombre" placeholder="John Doe" autocomplete="off"/>
+    
+    <input type="submit" id="submit" name="Log in" value="Log in" onclick="Prueba()">
+    <div id="table"></div>
+                    
+    
+                    
+    <script>
+        async function Prueba(){
+            
+            console.log("h");
+            let nombre = document.getElementById("nombre").value; 
+            
+            const url = 'http://localhost:8888/api/v1/user/playlists/'+ nombre;
+
+            console.log(nombre);
+
+            var requestOptions={
+                method:'GET',
+            };
+    
+            let request= await fetch(url);
+
+            if (request.ok){
+                data = await request.json();
+                
+
+                document.getElementById("table").innerHTML = "";
+
+                let table = document.createElement("table");
+
+                let header_row = document.createElement("tr");
+                var h1 = header_row.insertCell(0);
+                var h2 = header_row.insertCell(1);
+                
+
+                
+                h1.innerHTML ="NOMBRE";
+                h2.innerHTML = "ID";
+
+                table.appendChild(header_row);
+
+                //Numero de filas
+                for (let i = 0; i < data.length; i++) {
+                    //Numero de columnas
+                    let row = document.createElement("tr");
+                    //No nos deja hacerlo mediante un bucle, asi que a manopla
+
+                    var cell1 = row.insertCell(0);
+                    var cell2 = row.insertCell(1);
+                
+                    
+                    cell1.innerHTML = data[i].movieList;
+                    cell2.innerHTML = data[i].movieListId;
+
+                    table.appendChild(row);
+                }
+                
+                document.getElementById("table").appendChild(table);
+                
+            } else {
+                alert("Error al añadir un nuevo formulario");
+            }
+        }
+         
+
+    </script>
+</body>
+</html>
