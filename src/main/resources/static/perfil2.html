@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="perfil2.css">
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css" rel="stylesheet">  
+        <script src="https://kit.fontawesome.com/22ef74e242.js" crossorigin="anonymous"></script>    
+        <title>Miguel Torres</title>
+    </head>
+    <body onload="checkLogin()">  
+        <div class="nav-menu">
+            <ul>
+                <a id="home" href="index.html"><li><i class="fa-solid fa-bars"></i></li></a>
+                <a id="inbox" href="inbox.html"><li><i class="fa-solid fa-inbox"></i></i></li></a>
+                <a id="portfolio" href="gallery.html"><li><i class="fa-solid fa-user"></i></li></a>
+                <a id="grid" href="search.html"><li><i class="fa-solid fa-book"></i></i></li></a>
+                <a id="profile" href=""><li><i class="fa-solid fa-hashtag"></i></li></a>
+                <a id="movies" href="movies.html"><li><i class="fa-solid fa-video"></i></li></a>
+            </ul>
+        </div>
+
+        <div class="sidebar">
+            <div class="left-arrow">
+                <a href="gallery.html"><i class="fa-solid fa-angle-left"></i></a>
+            </div>
+                  
+            <div class="logo">
+              <a href="#">
+                <img src="MovieGramLogo-modified (2).png" alt="Logo" />
+              </a>
+            </div>
+        
+      
+            <div class="navigation">
+              <ul>
+                <li>
+                  <a href="#">
+                    <span class="fa fa-home"></span>
+                    <span>Home</span>
+                  </a>
+                </li>
+      
+                <li>
+                  <a href="#">
+                    <span class="fa fa-search"></span>
+                    <span>Search</span>
+                  </a>
+                </li>
+      
+                <li>
+                  <a href="#">
+                    <span class="fa fas fa-book"></span>
+                    <span>Your Library</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+      
+            <div class="navigation">
+              <ul>
+                <li>
+                  <a href="#">
+                    <span class="fa fas fa-plus-square"></span>
+                    <span onclick="crearPlaylist()">Create Playlist</span>
+                  </a>
+                </li>
+      
+
+              </ul>
+            </div>
+      
+            <div class="policies">
+              <ul>
+                <li>
+                  <a href="#">Cookies</a>
+                </li>
+                <li>
+                  <a href="#">Privacy</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+        <div class="home">
+            <div id="main" class="main-container">
+            </div>
+            <div id="movies-result" class="movies">
+                <!--
+                <div class="result">
+                    <ul>
+                        <li>Movie name 1</li>
+                        <li>year</li>
+                        <li>program/show</li>
+                        <li>url</li>
+                    </ul>
+                  </div>
+                  <div class="result">
+                    <ul>
+                        <li>Movie name 1</li>
+                        <li>year</li>
+                        <li>program/show</li>
+                        <li>url</li>
+                    </ul>
+                  </div>
+                  -->
+            </div>
+        </div>
+        <script>
+            var movielists = [];
+            var username;
+            var peliculas_movielists = {};
+
+            // Retrieve the username from the URL parameter
+            const urlParams = new URLSearchParams(window.location.search);
+
+            async function fetchUserActual(){
+              const url = `http://localhost:8888/api/v1/user/actual`;
+
+              await fetch(url, {
+                  method: 'GET', 
+                  headers: {
+                      'Content-Type': 'application/json', 
+                      'Accept': 'application/json',
+                  }
+              })
+              // Respuesta header
+              .then(res => {
+                  if (res.ok){
+                      return res.json(); 
+                  } else {
+                      throw res; 
+                  }
+              })
+              // Respuesta body
+              .then (r => {
+                  username = r; 
+              })
+              .catch(e => console.log(e));
+          }
+   
+            async function loadData(){
+              const url = `http://localhost:8888/api/v1/user/playlists/${username["username"]}`;
+              console.log(url);
+
+              const response = await fetch(url);
+
+              if (response.ok){
+                  const data = await response.json();
+
+                  data.forEach(movie => {
+                      let movieList = movie.movieList;
+                      let movieListId = movie.movieListId; 
+                      let username = movie.username;
+
+                      let obj = {
+                        movieList : movieList,
+                        movieListId : movieListId, 
+                        username : username
+                      };
+                      
+                      movielists.push(obj);
+                  })
+              } else {
+                  console.log("error");
+              }
+            }
+
+            async function showData(){
+              await fetchUserActual();
+              await loadData();
+              // Añado playlists
+              let html = `<div class="user">
+                            <p>Welcome, ${username["username"]}<span id="${username["username"]}"></span>!</p>
+                        </div>
+                          <div class="spotify-playlists">
+                            <h2>MovieLists</h2>
+                            <div class="list">`;
+                            
+
+                for(let i=0; i<movielists.length; i++){
+                html += `<div class="item" onclick="showPeliculas(${movielists[i].movieListId})">
+                            <img src="https://i.scdn.co/image/ab67616d0000b2733b5e11ca1b063583df9492db" />
+                            <div class="play">
+                              <span class="fa fa-play"></span>
+                            </div>
+                            <h4>${movielists[i].movieList}</h4>
+                            <p>${movielists[i].username}</p>
+                          </div>`;
+                }
+        
+              html += `</div>
+                        </div>`;
+                        
+              
+
+              document.getElementById("main").innerHTML = html; 
+            }
+
+            async function showPeliculas(movieListId){
+              console.log(movieListId);
+
+              await fetchPeliculasMovielist(movieListId);
+             let html = ``;
+              for (let i=0; i<peliculas_movielists.length; i++){
+                html += `<div class="result">
+                    <ul>
+                        <li><i class="fa-solid fa-clapperboard"></i>  ${peliculas_movielists[i]["nombre"]}</li>
+                        <li><i class="fa-solid fa-calendar"></i>  ${peliculas_movielists[i]["year"]}</li>
+                        <li><i class="fa-solid fa-bars"></i>  ${peliculas_movielists[i]["categoria"]}</li>
+                    </ul>
+                  </div>`;
+                console.log(peliculas_movielists[i]["nombre"]);
+              }
+              document.getElementById("movies-result").innerHTML = html; 
+            }
+
+            async function fetchPeliculasMovielist(movieListId){
+              const url = `http://localhost:8888/api/v1/peliculas/movielist/${movieListId}`;
+              await fetch(url, {
+                method: 'GET', 
+                headers: {
+                  'Content-Type': 'application/json', 
+                  'Accept': 'application/json',
+                }
+              })
+              // Promise header
+              .then(res => {
+                if (res.ok){
+                  return res.json();
+                } else {
+                  throw res;
+                }
+              })
+              // Promise body
+              .then (r => {
+                peliculas_movielists = r; 
+              })
+              // Errores
+              .catch(e => console.log(e));
+            }
+
+            async function  crearPlaylist(){
+              console.log(username["username"]);
+             
+              //window.location.href = 'crearPlaylist.html?username=' + encodeURIComponent(username["username"]);
+              window.location.href = 'crearPlaylist.html'
+            }
+
+            async function checkLogin(){
+              const url = `http://localhost:8888/api/v1/user/actual`;
+              const response = await fetch(url);
+
+              if (response.ok){
+                showData();
+              } else {
+                  alert("Debes iniciar sesion");
+                  window.location.href = "http://localhost:8888/gallery.html";
+              }
+                
+            }
+        </script>
+    </body>
+</html>

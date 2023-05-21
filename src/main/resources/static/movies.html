@@ -20,7 +20,7 @@
                     <a id="inbox" href="inbox.html"><li><i class="fa-solid fa-inbox"></i></i></li></a>
                     <a id="portfolio" href="gallery.html"><li><i class="fa-solid fa-user"></i></li></a>
                     <a id="grid" href="search.html"><li><i class="fa-solid fa-book"></i></i></li></a>
-                    <a id="profile" href="perfil.html"><li><i class="fa-solid fa-hashtag"></i></i></li></a>
+                    <a id="profile" href="perfil2.html"><li><i class="fa-solid fa-hashtag"></i></i></li></a>
                     <a id="movies" href=""><li><i class="fa-solid fa-video"></i></li></a>
                 </ul>
             </div>
@@ -67,6 +67,8 @@
 
         <script>
             var peliculas = []
+            var userActual;
+            var movielists; 
 
             async function fetchMovies(){
                 peliculas = [];
@@ -115,7 +117,7 @@
                                             <img src="${peliculas[index].url}">
                                         </div>
                                         <div id="right-content-${peliculas[index].id}" class="right-content">
-                                            <p id="full-name">id:${peliculas[index].id} - year:${peliculas[index].year_p}</p>
+                                            <p id="full-name">id:${peliculas[index].id}</p>
                                             <p id="name" onclick="showMoreInfo('${peliculas[index].nombre}', ${peliculas[index].id}, ${peliculas[index].year_p})">${peliculas[index].nombre}</p>
                                         </div>
                                     </div>`;
@@ -143,8 +145,7 @@
 
             function showMoreInfo(nombre, id_p, year_p){
                 let html = `<ul>
-                                <li style="cursor:pointer; onclick="showMovieLists()">Añadir a movielist</li>
-                                <li style="cursor:pointer;">Crear review</li>
+                                <li style="cursor:pointer;" onclick="showMovieLists(${id_p})">Añadir a movielist</li>
                                 <li style="cursor:pointer;"><i class="fa-solid fa-circle-left" onclick="showLessInfo('${nombre}', ${id_p}, ${year_p})"></i></li>
                             </ul>`;
 
@@ -154,7 +155,7 @@
             }
 
             function showLessInfo(nombre, id_p, year_p){
-                let html = `<p id="full-name">id:${id_p} - year:${year_p}</p>
+                let html = `<p id="full-name">id:${id_p}</p>
                             <p id="name" onclick="showMoreInfo('${nombre}', ${id_p}, ${year_p})">${nombre}</p>`;
 
                 let id = 'right-content-' + id_p; 
@@ -163,71 +164,93 @@
             }
 
             async function fetchUserActual(){
-            const url = 'http://localhost:8888/api/v1/user/actual';
+                const url = 'http://localhost:8888/api/v1/user/actual';
 
-            await fetch(url, {
-                method: 'GET', 
-                headers: {
-                    'Content-Type': 'application/json', 
-                    'Accept': 'application/json',
-                }
-            })
-            // Respuesta header
-            .then(res => {
-                if (res.ok){
-                    return res.json(); 
-                } else {
-                    throw res; 
-                }
-            })
-            // Respuesta body
-            .then (r => {
-                return r; 
-            })
-            .catch(e => console.log(e));
-        }
-
-        async function fetchMovieLists(user){
-            const url = 'http://localhost:8888/api/v1/user/playlists/' + user;
-
-            await fetch(url, {
-                method: 'GET', 
-                headers: {
-                    'Content-Type': 'application/json', 
-                    'Accept': 'application/json',
-                }
-            })
-            // Respuesta header
-            .then(res => {
-                if (res.ok){
-                    return res.json(); 
-                } else {
-                    throw res; 
-                }
-            })
-            // Respuesta body
-            .then (r => {
-                return r; 
-            })
-            .catch(e => console.log(e));
-        }
-
-
-        async function showMovieLists(){
-            let userActual = await fetchUserActual();
-            let movielists = await fetchMovieLists(userActual["username"]);
-
-            console.log(userActual);
-            console.log(movielists);
-
-            html = ``;
-            for (let i=0; i<movielists.length; i++){
-                html += `<p>${movielists[i]["movieList"]}</p>`;
+                await fetch(url, {
+                    method: 'GET', 
+                    headers: {
+                        'Content-Type': 'application/json', 
+                        'Accept': 'application/json',
+                    }
+                })
+                // Respuesta header
+                .then(res => {
+                    if (res.ok){
+                        return res.json(); 
+                    } else {
+                        throw res; 
+                    }
+                })
+                // Respuesta body
+                .then (r => {
+                    userActual = r; 
+                })
+                .catch(e => console.log(e));
             }
 
+            async function fetchMovieLists(user){
+                const url = 'http://localhost:8888/api/v1/user/playlists/' + user;
 
-            document.getElementById("search-bar").innerHTML = html; 
-        }
+                await fetch(url, {
+                    method: 'GET', 
+                    headers: {
+                        'Content-Type': 'application/json', 
+                        'Accept': 'application/json',
+                    }
+                })
+                // Respuesta header
+                .then(res => {
+                    if (res.ok){
+                        return res.json(); 
+                    } else {
+                        throw res; 
+                    }
+                })
+                // Respuesta body
+                .then (r => {
+                    movielists = r; 
+                })
+                .catch(e => console.log(e));
+            }
+
+            async function showMovieLists(id_p) {
+                await fetchUserActual();
+                await fetchMovieLists(userActual["username"]);
+
+                let html = `<h1 style="color: #333; font-size: 1.4em;">MovieLists</h1>
+                        <ul style="font-family: 'Georgia';
+                            padding: 0; 
+                            border: 0;
+                            text-align: center; 
+                            list-style: none;">`;
+                for (let i = 0; i < movielists.length; i++) {
+                    html += `<li onclick="addToMovieList(${movielists[i]["movieListId"]}, ${id_p})" style="cursor:pointer;" id=${movielists[i]["movieListId"]}>${movielists[i]["movieList"]}</li>`;
+                }
+
+                html += `<li style="text-decoration:underline; cursor:pointer" onclick="showSearchBar()">Back</li>
+                        </ul>`;
+                document.getElementById("search-bar").innerHTML = html;
+            }
+
+            function showSearchBar() {
+            console.log("showing search bar");
+
+            document.getElementById("search-bar").innerHTML = `<input id="search-bar-result" type="text" name="search" placeholder="Search by word, name, year, etc ..." required autocomplete="off" onchange="displayMovies()">
+                                    <i class="fa-solid fa-magnifying-glass"></i>`;
+            }
+        
+            async function addToMovieList(id_movielist, id_p){
+                console.log(id_movielist, id_p);
+                const url = `http://localhost:8888/api/v1/movielists/${id_movielist}/${id_p}`;
+            
+                const response = await fetch(url);
+
+                if (response.ok){
+                    alert("Pelicula añadida con exito");
+                } else {
+                    alert("Error al añadir la pelicula");
+                }
+            }
         </script>
     </body>
 </html>

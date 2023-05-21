@@ -10,4 +10,5 @@ public interface PeliculaService {
     PeliculaModel updatePelicula(String id, PeliculaModel pelicula);
     void deletePelicula(String id);
     Optional<PeliculaModel> retrievePelicula(String id); 
+    Iterable<PeliculaModel> retrievePeliculasByMovielistId(String id);
 }

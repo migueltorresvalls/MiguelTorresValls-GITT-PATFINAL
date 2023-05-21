@@ -51,6 +51,12 @@ public class PeliculaController {
         return ResponseEntity.ok().body(peliculaResponse);
     }
 
+    @GetMapping("/peliculas/movielist/{id}")
+    public ResponseEntity<Iterable<PeliculaModel>> retrievePeliculasByMovieListId(@PathVariable String id){
+        Iterable<PeliculaModel> response = peliculaService.retrievePeliculasByMovielistId(id);
+        return ResponseEntity.ok().body(response);
+    }
+
     @PutMapping("/peliculas/{id}/")
     public ResponseEntity<PeliculaModel> updatePelicula(@PathVariable String id, @RequestBody PeliculaModel pelicula){
         PeliculaModel peliculaResponse = peliculaService.updatePelicula(id, pelicula);

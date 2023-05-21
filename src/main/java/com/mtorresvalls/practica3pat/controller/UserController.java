@@ -21,7 +21,7 @@ import com.mtorresvalls.practica3pat.service.dto.UserPlaylistDTO;
 @RequestMapping("/api/v1")
 public class UserController {
     
-    private static UserModel USER_ACTUAL = null; 
+    public static UserModel USER_ACTUAL = null; 
 
     @Autowired
     private UserService service;
@@ -64,8 +64,6 @@ public class UserController {
         }
         return ResponseEntity.badRequest().body(null);
     }
-
-
 
     @GetMapping("/user/actual")
     public ResponseEntity<UserModel> getUserActual(){

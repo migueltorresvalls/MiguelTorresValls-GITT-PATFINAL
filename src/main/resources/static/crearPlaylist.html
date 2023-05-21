@@ -3,7 +3,7 @@
     <head>
 
         <link rel="stylesheet" href="styles.css">
-        <link rel="stylesheet" href="gallery.css">
+        <link rel="stylesheet" href="gallery2.css">
         <link rel="stylesheet" href="spoti.css">
 
         <meta charset="utf-8">
@@ -31,7 +31,7 @@
             
 
                 <!--<form action="addNewForm" method="POST"> -->
-                <form id="registration-form" >
+                <div class="form">
         
                     
                     <input type="text" id="text" name="nombreList" placeholder="Nombre movieList" autocomplete="off">
@@ -40,7 +40,7 @@
                     <input type="submit" id="submit" name="Crear" value="Crear" onclick="nuevaList()">
                     
                     
-                </form>
+                  </div>
                 
             </div>
             <div class="sidebar">
@@ -115,10 +115,37 @@
     <script>
         const urlParams = new URLSearchParams(window.location.search);
         const username1 = urlParams.get('username');
+        var username; 
+
+        async function fetchUserActual(){
+              const url = `http://localhost:8888/api/v1/user/actual`;
+
+              await fetch(url, {
+                  method: 'GET', 
+                  headers: {
+                      'Content-Type': 'application/json', 
+                      'Accept': 'application/json',
+                  }
+              })
+              // Respuesta header
+              .then(res => {
+                  if (res.ok){
+                      return res.json(); 
+                  } else {
+                      throw res; 
+                  }
+              })
+              // Respuesta body
+              .then (r => {
+                  username = r; 
+              })
+              .catch(e => console.log(e));
+          }
       
         async function nuevaList() {
           
-          const username = username1;
+          //const username = username1;
+          await fetchUserActual();
           const movieList = document.getElementById("text").value;
           const movieListId = document.getElementById("movieId").value;
       
@@ -126,7 +153,7 @@
       
           const data = {
             movieList: movieList,
-            username: username,
+            username: username["username"],
             movieListId: movieListId
           };
           console.log(data);
@@ -144,8 +171,8 @@
             const response = await fetch(url, postOptions);
       
             if (response.ok) {
+              window.location.href = 'perfil.html';
               alert("¡Lista de películas creada!");
-              console.log(response);
             } else {
               alert("Error al crear la lista de películas");
               

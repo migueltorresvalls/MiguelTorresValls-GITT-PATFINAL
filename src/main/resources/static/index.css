@@ -8,6 +8,10 @@ body {
     background: rgb(6, 113, 102);
 }
 
+#home {
+    background: rgb(6, 113, 102);
+}
+
 #description{
     top: 5%;
     color: rgb(220, 211, 211);
@@ -44,7 +48,4 @@ body {
     font-style:oblique;
     line-height: 1.5em;
    
-}
-footer{
-    background:  rgb(66, 64, 65);
 }

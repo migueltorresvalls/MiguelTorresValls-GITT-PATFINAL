@@ -62,4 +62,9 @@ public class PeliculaServiceImpl implements PeliculaService{
             }
         }
     }
+
+    @Override
+    public Iterable<PeliculaModel> retrievePeliculasByMovielistId(String id){
+        return peliculaRepository.retrievePeliculasByMovielist(id);
+    }
 }

@@ -19,7 +19,7 @@ body {
 .right-arrow:hover{
     background:rgb(6, 113, 102);
 }
-.home form {
+.form {
     background: #FFFFFF; 
     position: relative;
     transform: translate(-50%, 0);
@@ -35,8 +35,8 @@ body {
     align-items: center;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
-.home form input, 
-.home form textarea {
+.form input, 
+.form textarea {
     background: #f2f2f2;
     width: 80%;
     transition: all .5s ease-in-out;
@@ -50,7 +50,7 @@ body {
     margin-bottom: 1em;
     padding: .7em;
 }
-.home form textarea{
+.form textarea{
     height: 20%;
 }
 
@@ -66,13 +66,13 @@ body {
     background:rgb(210, 199, 199)
 }
 
-.home form p{
+.form p{
     color: #333;
     font-size: .8em;
 }
 
-.home form input:focus, 
-.home form textarea:focus{
+.form input:focus, 
+.form textarea:focus{
     background: #d8d8d8;
 }
 
