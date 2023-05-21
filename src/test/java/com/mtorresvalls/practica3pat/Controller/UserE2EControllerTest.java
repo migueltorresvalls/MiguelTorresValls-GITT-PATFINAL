@@ -3,7 +3,6 @@ package com.mtorresvalls.practica3pat.Controller;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.core.ParameterizedTypeReference;
@@ -12,14 +11,12 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.mtorresvalls.practica3pat.model.UserModel;
 import com.mtorresvalls.practica3pat.repository.UserRepository;
 
 import static org.assertj.core.api.BDDAssertions.then;
 
-import java.util.List;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class UserE2EControllerTest {
@@ -52,5 +49,4 @@ public class UserE2EControllerTest {
         then(result.getStatusCode()).isEqualTo(HttpStatus.OK);
         then(result.getBody()).isEqualTo(users);
     }
-
 }

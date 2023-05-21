@@ -22,11 +22,11 @@ html {
   }
   
   ::-webkit-scrollbar-thumb {
-    background: #333;
+    background: rgb(6, 113, 102);
   }
   
   ::-webkit-scrollbar-thumb:hover {
-    background: #555;
+    background: rgb(17, 157, 143);
   }
 
 body {
@@ -86,19 +86,11 @@ body {
     top: 50%;
 }
 
-#home:hover{
-    background: rgb(6, 113, 102);
-}
-
-#inbox:hover{
-    background: rgb(6, 113, 102);
-}
-
-#portfolio:hover{
-    background: rgb(6, 113, 102);
-}
-
-#grid:hover{
+#home:hover, 
+#inbox:hover, 
+#portfolio:hover, 
+#grid:hover,
+#movies:hover{
     background: rgb(6, 113, 102);
 }
 

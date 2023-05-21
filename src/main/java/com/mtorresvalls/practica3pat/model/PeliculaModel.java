@@ -27,6 +27,14 @@ public class PeliculaModel {
     @Column("URL")
     private String url; 
 
+    public PeliculaModel(int id, String nombre, int year, String categoria, String url){
+        this.id = id; 
+        this.nombre = nombre; 
+        this.year = year; 
+        this.categoria = categoria; 
+        this.url = url; 
+    }
+
     // Generamos EQUALS para el test
     @Override
     public boolean equals(Object o){
