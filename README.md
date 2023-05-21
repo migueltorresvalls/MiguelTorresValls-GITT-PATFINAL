@@ -21,22 +21,24 @@
 
 ![image](https://github.com/migueltorresvalls/MiguelTorresValls-GITT-PATFINAL/assets/97603106/d48757b2-fd4f-4594-ad4f-ed9c4aa2c732)
  
-> En este ejemplo se ha usado el usuario “user1” con contraseña “mensaje de prueba”
+ En este ejemplo se ha usado el usuario “user1” con contraseña “mensaje de prueba”
+
+> Esta es la página principal del usuario, donde puede crear sus propias playlist y añadir películas dentro de ellas. 
+> Como se puede observar el ‘sidebar’ tiene una serie de funcionalidades:
 
 
 ![image](https://github.com/migueltorresvalls/MiguelTorresValls-GITT-PATFINAL/assets/97603106/af305b86-28ce-45e9-97fe-b1671a49e9f5)
  
-Esta es la página principal del usuario, donde puede crear sus propias playlist y añadir películas dentro de ellas. 
-Como se puede observar el ‘sidebar’ tiene una serie de funcionalidades:
+
 
 ![image](https://github.com/migueltorresvalls/MiguelTorresValls-GITT-PATFINAL/assets/97603106/8619432a-d913-4796-80a7-a7b35318d402)
 
 > Para crear tu propia movieList:
+> Añades el nombre que quieras y su id correspondiente y se añade a tu página.
 
 
 ![image](https://github.com/migueltorresvalls/MiguelTorresValls-GITT-PATFINAL/assets/97603106/576a67e4-d160-40d1-83d0-0e82652ac290)
 
-> Añades el nombre que quieras y su id correspondiente y se añade a tu página.
 
 
 ![image](https://github.com/migueltorresvalls/MiguelTorresValls-GITT-PATFINAL/assets/97603106/6036631f-6e0b-4b9a-9a54-e0d234161f1f)
